@@ -20,57 +20,11 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
   </script>
-
-  <style>
-    /* .card {
-      padding: 1rem;
-      border: 1px solid black;
-      margin: 1rem;
-    } */
-
-    .flex-card {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 5px;
-    }
-
-    .rightFooter {
-      padding-left: 15% !important;
-      /* margin-right: 2% !important; */
-    }
-
-    .rightLeft {
-      padding-left: 5% !important;
-      /* margin-right: 2% !important; */
-    }
-
-    .rightMiddle {
-      padding-left: 5% !important;
-      /* margin-right: 2% !important; */
-    }
-
-
-
-
-    @media screen and (max-width: 680px) {
-      /* .flex-card {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      grid-gap: 5px;       */
-
-      .flex-card {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
-        grid-gap: 5px;
-
-      }
-    }
-  </style>
-
 </head>
 
+
 <body>
-  {{-- @include('includes.navigationBar') --}}
+
   <nav class="navbar navbar-expand-lg navbar-light  ml-5 mr-5">
     <a class="navbar-brand font-weight-bold" href="#">eCommerce</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -104,32 +58,59 @@
   </nav>
 
 
-
-  <section id="topHeader" class="clearfix">
-    <div class="container d-flex h-100">
-      <div class="row justify-content-center align-self-center">
-        <div class="col-md-6 col-12 intro-info order-md-first order-last mt-5 text-center ">
-          <h1 class="text-primary font-weight-bold">Lorem ipsum dolor, sit amet consectetur</h1>
-          <h3 class="text-dark font-weight-bold">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, maiores?
-          </h3>
+  <section class="productDetais">
+    <div class="container overflow-hidden">
+      <div class="row gx-5">
+        <div class="col-md-6 col-12">
+          {{-- <div class="p-3 border bg-light">Custom column padding</div> --}}
+          <div class="row gx-5">
+            <div class="col-md-3 col-3">
+              <div class="p-3 border bg-light m-2 ">
+                <img src="{{ $productDetails["img"] }}" alt="" style="width: 50px">               
+              </div>
+              <div class="p-3 border bg-light m-2"><img src="{{ $productDetails["img"] }}" alt="" style="width: 50px"> </div>
+              <div class="p-3 border bg-light m-2"><img src="{{ $productDetails["img"] }}" alt="" style="width: 50px"> </div>
+            </div>
+            <div class="col-md-6 col-6">
+              <div class="p-3 border bg-light"><img src="{{ $productDetails["img"] }}" alt="" ></div>
+            </div>
+          </div>
         </div>
-        <div class="col-md-6 col-12 intro-img order-md-last order-first">
-          <img src={{ url('/images/undraw_web_shopping_re_owap.png') }} alt="" class="img-fluid">
+        <div class="col-md-6 col-12">
+          <div class="p-3 ">
+            <div>
+              <a href=''><h4>{{ $productDetails["name"] }}</h4></a>
+            </div>
+            <div>
+              <p>Category:{{ $productDetails["category"] }}</p>
+            </div>
+             <div>
+             <p>৳{{ $productDetails["price"] }}</p>
+             <button type="button" class="btn btn-primary al" >Add to cart<i class="fas fa-shopping-cart"></i></button>
+            </div>
+          </div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <section class="products m-5">
-    <h1 class="text-center font-weight-bold">All Products</h1>
-    <div class="container ">
-      <div id="productCard" class="flex-card">
+  <section class="productDescription ">
+    <div class="container">
 
-      </div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Et quaerat unde accusantium voluptas, laboriosam
+        atque asperiores? Repudiandae magnam obcaecati vero ducimus, soluta voluptates saepe consequatur voluptatum at!
+        Magnam aperiam libero provident deserunt odio illo atque, vitae dolorem sit sunt reiciendis pariatur placeat
+        animi voluptate, sapiente nesciunt aliquid in debitis impedit?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim ea atque quidem fugit? Dolores corrupti, obcaecati
+        molestias sed rerum perspiciatis nostrum illum molestiae consequuntur incidunt aliquam aperiam aut sunt sequi
+        quae maiores id modi reprehenderit voluptate expedita blanditiis exercitationem optio mollitia! Nulla suscipit
+        maxime delectus provident reprehenderit cupiditate voluptatem illum?
+      </p>
+
     </div>
-  </section>
 
+
+  </section>
   <section id="footer" style="background: rgb(117, 117, 228);">
     <!-- Footer -->
     <footer class="page-footer font-small indigo">
@@ -208,77 +189,27 @@
     <!-- Footer -->
   </section>
 
-
-
-
   <script>
     var productDetails = @json($productDetails);
-      console.log(productDetails);
+         console.log(productDetails);
 
-      const container = document.getElementById('productCard');
 
-      var i=0;
-      productDetails.forEach((product, idx)=> {
-
-        if(i==6){
-          return false;
-        }
-        // Create card element
-        const card = document.createElement('div');
+         const container = document.getElementById('picture');
+         const card = document.createElement('div');
         card.classList = 'card-body';
 
         // Construct card content
-        const content = `
-        <div class="card" style="border: 5px solid gray;
-      border-radius: 5px;">
-    <img class="card-img-top " src=${product.img} alt="Card image cap" style=" width: 50% ; margin-left:15%">
-    <div class="card-body ">
-      <a href='/productDetails/${product.key}'><h5 class="card-title">${product.name}</h5></a>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      <p class="card-text"><small class="text-muted">৳${product.price}</small></p>
-      <button type="button" class="btn btn-primary al"  onClick="addToCart()" >Add to cart<i class="fas fa-shopping-cart"></i></button>
-    </div>
+        const productPic = `
+        <img class="card-img-top " src=${product.img} alt="Card image cap">
         `;
 
         
         // Append newyly created card element to the container
-          container.innerHTML += content;
-         i++;
-      })
-
-
-      function addToCart() {
-        
-        // const depositInput = document.getElementById('totalProductInCart');
-        // const newDepositAmountText = depositInput.innerHTML;
-        // const newDepositAmount = parseFloat(newDepositAmountText);
-    
-        // const newDepositTotal = newDepositAmount+1;
-
-        // console.log(newDepositTotal);    
-        // depositInput.innerText = newDepositTotal;
-
-        const productInCart = document.getElementById('totalProductInCart');
-        const newproductInCartText = productInCart.innerHTML;
-        const newproductInCart = parseFloat(newproductInCartText);
-    
-        const productInCartTotal = newproductInCart+1;
-
-        console.log(productInCartTotal);    
-        productInCart.innerText = productInCartTotal;
-
-
-      }
+        productPic.innerHTML += productPic;
 
 
 
-
-
-    
-
-      
   </script>
-
 
 </body>
 
